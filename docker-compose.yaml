@@ -1,27 +1,23 @@
 version: "3"
 
 services:
-  pyopenms:
+  tf:
     image: dmccloskey/docker-pyopenms-vscode
     volumes:
       # 1
       # - //C/Users/domccl/Dropbox (UCSD SBRG)/Project_FastPeak/openMS_MRMworkflow/:/home/user/openMS_MRMworkflow/
       # - //C/Users/domccl/GitHub/smartPeak/py/:/home/user/code/
       # 2
-      - //C/Users/dmccloskey/Dropbox (UCSD SBRG)/Project_FastPeak/openMS_MRMworkflow/:/home/user/openMS_MRMworkflow/
-      - //C/Users/dmccloskey/Documents/GitHub/smartPeak/py/:/home/user/code/
-      # 3
-      # - /home/systemsbiochemistry/Documents/openMS_MRMworkflow/:/home/user/openMS_MRMworkflow/
-      # - /home/systemsbiochemistry/Documents/GitHub/smartPeak/py/:/home/user/code/
+      - //C/Users/dmccloskey/Documents/GitHub/TensorFlow_tutorials:/home/user/code/
     ports:
       - "3000:3000"
     command: python /home/user/code/debug_remote.py
     restart: always
     networks:
-      - pyopenms_network
+      - tf_network
     
 networks:
-  pyopenms_network:
+  tf_network:
     ipam:
       config:
         - subnet: 172.22.0.0/16
